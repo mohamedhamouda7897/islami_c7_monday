@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islami_c7_mon/home_screen/quran.dart';
+import 'package:islami_c7_mon/home_screen/quran_tab/quran.dart';
 import 'package:islami_c7_mon/home_screen/radio.dart';
 import 'package:islami_c7_mon/home_screen/sebha.dart';
 import 'package:islami_c7_mon/my_theme.dart';

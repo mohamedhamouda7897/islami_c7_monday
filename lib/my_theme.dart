@@ -8,7 +8,8 @@ class MyThemeData {
       appBarTheme: AppBarTheme(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          centerTitle: true),
+          centerTitle: true,
+          iconTheme: IconThemeData(color: colorBlack)),
       textTheme: TextTheme(
         headline1: TextStyle(
             fontSize: 30, fontWeight: FontWeight.bold, color: colorBlack),
