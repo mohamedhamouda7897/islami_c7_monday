@@ -5,44 +5,22 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('islamiiii')),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.amber,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add,
-
+    return Stack(
+      children: [
+        Image.asset(
+          'assets/images/main_background.png',
+          width: double.infinity,
+          fit: BoxFit.cover,
+        ),
+        Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Islami',
+              style: Theme.of(context).textTheme.headline1,
             ),
-            label: '',
-              backgroundColor: Colors.blue
           ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add,
-
-              ),
-              label: '',
-          backgroundColor: Colors.blue),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add,
-
-              ),
-              label: '',
-              backgroundColor: Colors.blue),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add,
-
-              ),
-              label: '',
-              backgroundColor: Colors.blue)
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
