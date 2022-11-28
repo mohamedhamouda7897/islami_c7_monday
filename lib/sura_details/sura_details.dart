@@ -35,16 +35,24 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
         ),
         body: verses.isEmpty
             ? Center(child: CircularProgressIndicator())
-            : ListView.separated(
-                separatorBuilder: (context, index) => Divider(
-                      color: MyThemeData.colorGold,
-                      endIndent: 40,
-                      indent: 40,
-                    ),
-                itemCount: verses.length,
-                itemBuilder: (_, index) {
-                  return SuraDetailsItem(verses[index]);
-                }),
+            : Container(
+                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                decoration: BoxDecoration(
+                    border: Border.all(color: MyThemeData.colorGold, width: 2),
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(25))),
+                child: ListView.separated(
+                    separatorBuilder: (context, index) => Divider(
+                          color: MyThemeData.colorGold,
+                          endIndent: 40,
+                          indent: 40,
+                        ),
+                    itemCount: verses.length,
+                    itemBuilder: (_, index) {
+                      return SuraDetailsItem(verses[index]);
+                    }),
+              ),
       )
     ]);
   }
