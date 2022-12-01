@@ -3,7 +3,8 @@ import 'package:islami_c7_mon/home_screen/quran_tab/quran.dart';
 import 'package:islami_c7_mon/home_screen/radio.dart';
 import 'package:islami_c7_mon/home_screen/sebha.dart';
 import 'package:islami_c7_mon/my_theme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_c7_mon/settings/settings.dart';
 import 'ahadeth.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Scaffold(
           appBar: AppBar(
             title: Text(
-              'Islami',
+              AppLocalizations.of(context)!.appTitle,
               style: Theme.of(context).textTheme.headline1,
             ),
           ),
@@ -61,6 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       size: 30),
                   label: 'Ahadeth',
                   backgroundColor: MyThemeData.colorGold),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Settings',
+                  backgroundColor: MyThemeData.colorGold),
             ],
           ),
           body: tabs[currentIndex],
@@ -69,5 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<Widget> tabs = [QuranTab(), SebhaTab(), RadioTab(), AhadethTab()];
+  List<Widget> tabs = [
+    QuranTab(),
+    SebhaTab(),
+    RadioTab(),
+    AhadethTab(),
+    SettingsScreen()
+  ];
 }

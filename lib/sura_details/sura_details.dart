@@ -2,24 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_c7_mon/my_theme.dart';
 import 'package:islami_c7_mon/sura_details/sura_details_item.dart';
+import 'package:provider/provider.dart';
 
-class SuraDetailsScreen extends StatefulWidget {
+import '../providers/sura_proivder.dart';
+
+class SuraDetailsScreen extends StatelessWidget {
   static const String routeName = 'SuraDetails';
 
   @override
-  State<SuraDetailsScreen> createState() => _SuraDetailsScreenState();
-}
-
-class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
-  List<String> verses = [];
-
-  @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SuraProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as SuraDetailsArgs;
-    if (verses.isEmpty) {
-      loadFile(args.index);
+    if (provider.verses.isEmpty) {
+      provider.loadFile(args.index);
     }
-
     return Stack(children: [
       Image.asset(
         'assets/images/main_background.png',
@@ -33,7 +29,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
             style: Theme.of(context).textTheme.headline1,
           ),
         ),
-        body: verses.isEmpty
+        body: provider.verses.isEmpty
             ? Center(child: CircularProgressIndicator())
             : Container(
                 margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
@@ -48,22 +44,13 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                           endIndent: 40,
                           indent: 40,
                         ),
-                    itemCount: verses.length,
+                    itemCount: provider.verses.length,
                     itemBuilder: (_, index) {
-                      return SuraDetailsItem(verses[index]);
+                      return SuraDetailsItem(provider.verses[index]);
                     }),
-              ),
+        ),
       )
     ]);
-  }
-
-  void loadFile(int index) async {
-    String content =
-        await rootBundle.loadString('assets/files/${index + 1}.txt');
-    List<String> lines = content.split('\n');
-    print(lines);
-    verses = lines;
-    setState(() {});
   }
 }
 
