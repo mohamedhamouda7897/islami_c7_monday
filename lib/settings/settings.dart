@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami_c7_mon/my_theme.dart';
+import 'package:islami_c7_mon/settings/theme_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/my_provider.dart';
@@ -54,24 +55,37 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Container(
-            padding: EdgeInsets.all(12),
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: MyThemeData.colorGold)),
-            child: Text(
-              'Light',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(color: MyThemeData.colorBlack),
+          InkWell(
+            onTap: () {
+              showThemeBottomSheet(context);
+            },
+            child: Container(
+              padding: EdgeInsets.all(12),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: MyThemeData.colorGold)),
+              child: Text(
+                pro.mode == ThemeMode.light ? 'Light' : "Dark",
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1!
+                    .copyWith(color: MyThemeData.colorBlack),
+              ),
             ),
           )
         ],
       ),
     );
+  }
+
+  void showThemeBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return ThemeBottomSheet();
+        });
   }
 
   void showLanguageBottomSheet(BuildContext context) {

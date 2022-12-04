@@ -29,7 +29,8 @@ class HadethDetailsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25)),
-                border: Border.all(color: MyThemeData.colorGold, width: 3)),
+                border: Border.all(
+                    color: Theme.of(context).colorScheme.primary, width: 3)),
             child: ListView.builder(
                 itemCount: args.content.length,
                 itemBuilder: (c, index) {

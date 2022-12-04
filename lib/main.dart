@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami_c7_mon/home_screen/home.dart';
 import 'package:islami_c7_mon/providers/my_provider.dart';
-import 'package:islami_c7_mon/providers/sura_proivder.dart';
 import 'package:islami_c7_mon/sura_details/sura_details.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -10,10 +9,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'my_theme.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => MyProvider()),
-    ChangeNotifierProvider(create: (context) => SuraProvider()),
-  ], child: MyApplication()));
+  runApp(ChangeNotifierProvider(
+      create: (context) => MyProvider(), child: MyApplication()));
 }
 
 class MyApplication extends StatelessWidget {
@@ -38,7 +35,7 @@ class MyApplication extends StatelessWidget {
       },
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: provider.mode,
     );
   }
 }

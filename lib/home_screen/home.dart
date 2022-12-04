@@ -4,7 +4,9 @@ import 'package:islami_c7_mon/home_screen/radio.dart';
 import 'package:islami_c7_mon/home_screen/sebha.dart';
 import 'package:islami_c7_mon/my_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_c7_mon/providers/my_provider.dart';
 import 'package:islami_c7_mon/settings/settings.dart';
+import 'package:provider/provider.dart';
 import 'ahadeth.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,10 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Stack(
       children: [
         Image.asset(
-          'assets/images/main_background.png',
+          provider.mode == ThemeMode.light
+              ? 'assets/images/main_background.png'
+              : "assets/images/bg.png",
           width: double.infinity,
           fit: BoxFit.cover,
         ),
@@ -35,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: currentIndex,
+            type: BottomNavigationBarType.shifting,
             onTap: (index) {
               currentIndex = index;
               setState(() {});
@@ -44,28 +50,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: ImageIcon(AssetImage('assets/images/quran.png'),
                       size: 30),
                   label: 'Quran',
-                  backgroundColor: MyThemeData.colorGold),
+                  backgroundColor: provider.mode == ThemeMode.light
+                      ? MyThemeData.colorGold
+                      : MyThemeData.darkPrimary),
               BottomNavigationBarItem(
                   icon: ImageIcon(
                     AssetImage('assets/images/sebha.png'),
                     size: 30,
                   ),
                   label: 'Sebha',
-                  backgroundColor: MyThemeData.colorGold),
+                  backgroundColor: provider.mode == ThemeMode.light
+                      ? MyThemeData.colorGold
+                      : MyThemeData.darkPrimary),
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage('assets/images/radio.png'),
                       size: 30),
                   label: 'Radio',
-                  backgroundColor: MyThemeData.colorGold),
+                  backgroundColor: provider.mode == ThemeMode.light
+                      ? MyThemeData.colorGold
+                      : MyThemeData.darkPrimary),
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage('assets/images/ahadeth.png'),
                       size: 30),
                   label: 'Ahadeth',
-                  backgroundColor: MyThemeData.colorGold),
+                  backgroundColor: provider.mode == ThemeMode.light
+                      ? MyThemeData.colorGold
+                      : MyThemeData.darkPrimary),
               BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
                   label: 'Settings',
-                  backgroundColor: MyThemeData.colorGold),
+                  backgroundColor: provider.mode == ThemeMode.light
+                      ? MyThemeData.colorGold
+                      : MyThemeData.darkPrimary),
             ],
           ),
           body: tabs[currentIndex],
